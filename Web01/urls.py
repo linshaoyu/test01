@@ -18,6 +18,7 @@ from django.contrib import admin
 from AppTest import views
 
 urlpatterns = [
+    url(r"^$", views.index),
     url(r"^hello$", views.view),
     url(r'^admin/', admin.site.urls),
 ]
