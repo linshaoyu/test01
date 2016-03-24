@@ -1,0 +1,66 @@
+/**
+ * BootstrapValidator (http://bootstrapvalidator.com)
+ *
+ * The best jQuery plugin to validate form fields. Designed to use with Bootstrap 3
+ *
+ * @version     v0.4.5
+ * @author      https://twitter.com/nghuuphuoc
+ * @copyright   (c) 2013 - 2014 Nguyen Huu Phuoc
+ * @license     MIT
+ */
+
+
+.bv-form .help-block{margin-bottom:0}.nav-tabs
+ li.bv-tab-success>a{
+ 	color:#1B9AF7
+ 	}
+ .nav-tabs li.bv-tab-error>a{
+ 	color:#FF1493
+ }
+
+ .has-error .form-control:focus {
+    border-color: #FF1493;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #FF1493;
+ }
+ .has-error .form-control {
+    border-color: #FF1493;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+.has-error .form-control-feedback {
+    color:#FF1493;
+ }
+
+ .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
+    color: #FF1493;
+}
+
+.has-success .form-control:focus {
+    border-color: #1B9AF7;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #1B9AF7;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #1B9AF7;
+}
+
+.has-success .form-control {
+    border-color: #1B9AF7;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    border: 1px solid #1b9af7;
+}
+
+.has-success .help-block, .has-success .control-label, 
+ .has-success.radio-inline label, .has-success.checkbox-inline label {
+    color: #0776C8;
+}
+
+.has-success .form-control-feedback {
+    color:#1B9AF7;
+ }
+.has-feedback .input-group .form-control-feedback {
+    color:#1B9AF7;
+}
+.form-control {
+	border: 1px solid #1B9AF7;
+	color: #1B9AF7;
+}
+
