@@ -2,8 +2,9 @@ import logging
 
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views import generic
+
 from .models import *
+from django.views import generic
 
 from .forms import AddForm
 
@@ -12,19 +13,23 @@ logging.basicConfig(level=logging.INFO)
 
 # Create your views here.
 
-def view(request):
-    logging.info("views.view")
-    return render(request, "index.html")
+
+class ResultsView(generic.ListView):
+    model = GameInfo
+    template_name = "list.html"
+
+    def get_queryset(self):
+        return GameInfo.objects.all()
 
 
-def DetailView():
+class DetailView(generic.DetailView):
     model = GameInfo
     template_name = "form.html"
 
 
-def ResultsView():
-    model = GameInfo
-    template_name = "list.html"
+def view(request):
+    logging.info("views.view")
+    return render(request, "index.html")
 
 
 def index(request):
