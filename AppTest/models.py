@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 # Create your models here.
 
@@ -56,7 +57,7 @@ ACCOUNTTYPE_CHOICE = (
 
 class GameInfo(models.Model):
     gameName = models.CharField(max_length=100, verbose_name="游戏名称")
-    gameCode = models.CharField(max_length=20, verbose_name="游戏编码")
+    gameCode = models.CharField(max_length=20, verbose_name="游戏编码", primary_key=True)
     gameType = models.CharField(max_length=20, verbose_name="游戏包类型", choices=GAMETYPE_CHOICE)
     parentGame = models.CharField(max_length=20, verbose_name="主包gamecode")
     tort = models.CharField(max_length=20, verbose_name="侵权类型", choices=TORT_CHOICE)
@@ -78,7 +79,7 @@ class GameInfo(models.Model):
 
 class AccountInfo(models.Model):
     gameName = models.CharField(max_length=100, verbose_name="游戏名称")
-    gameCode = models.CharField(max_length=20, verbose_name="游戏编码")
+    gameCode = models.ForeignKey(GameInfo, verbose_name="游戏编码")
     account = models.CharField(max_length=50, verbose_name="开发者账号")
     password = models.CharField(max_length=50, verbose_name="账号密码")
     accUser = models.CharField(max_length=50, verbose_name="账号名称")
@@ -88,7 +89,14 @@ class AccountInfo(models.Model):
     accountType = models.CharField(max_length=50, verbose_name="账号类型", default="游戏包账号", choices=ACCOUNTTYPE_CHOICE)
 
     def __str__(self):
-        return self.gameName + "(" + self.gameCode + ")"
+        return self.gameName + "(" + self.gameCode.gameCode + ")"
 
     class Meta:
         verbose_name = "开发者账号管理"
+
+
+class GameInfoForm(ModelForm):
+    class Meta:
+        model = GameInfo
+        fields = "__all__"
+

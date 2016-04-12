@@ -2,11 +2,10 @@ import logging
 
 from django.http import HttpResponse
 from django.shortcuts import render
-
-from .models import *
 from django.views import generic
 
 from .forms import AddForm
+from .models import *
 
 logging.basicConfig(level=logging.INFO)
 
@@ -23,9 +22,15 @@ class ResultsView(generic.ListView):
 
 
 class DetailView(generic.DetailView):
+    logging.info("===DetailView====")
     model = GameInfo
     template_name = "form.html"
 
+"""
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        return context
+"""
 
 def view(request):
     logging.info("views.view")
