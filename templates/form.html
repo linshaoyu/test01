@@ -2,19 +2,22 @@
 
 {% block content %}
 
-    <h1>{{ gameinfo.gameName }}</h1>
+    <h1>{{ form.gameName }} || {{ gameinfo.gameName }}</h1>
     {#    {% url "info" gameinfo.gameCode %}#}
     <br>
     <form action="" method="post">
         {% csrf_token %}
 
         {{ gameinfo }}
-{#        {% for field in gameinfo %}#}
-{#            <div class="fieldWrapper">#}
-{#                {{ field.label_tag }}:{{ field }}#}
-{#                {{ field.errors }}#}
-{#            </div>#}
-{#        {% endfor %}#}
+
+        <h4>=========================================</h4>
+
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.label_tag }}{{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
         <input type="submit" value="Vote"/>
     </form>
 

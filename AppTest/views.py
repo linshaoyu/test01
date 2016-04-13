@@ -24,13 +24,27 @@ class ResultsView(generic.ListView):
 class DetailView(generic.DetailView):
     logging.info("===DetailView====")
     model = GameInfo
+    model = GameInfoForm(model)
     template_name = "form.html"
+
 
 """
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         return context
 """
+
+
+def detail(request, gameCode):
+    logging.info("detail")
+    if (request.method == "POST"):
+        logging.info("post")
+    else:
+        logging.info("get")
+        gameInfo = GameInfo.objects.get(pk=gameCode)
+        form = GameInfoForm(instance=gameInfo)
+    return render(request, "form.html", {"form": form})
+
 
 def view(request):
     logging.info("views.view")

@@ -43,7 +43,7 @@ ENGINE_CHOICE = (
 )
 
 STATUS_CHOICE = (
-    ("未上线","未上线"),
+    ("未上线", "未上线"),
     ("已上线", "已上线"),
     ("已下架", "已下架"),
 )
@@ -72,9 +72,14 @@ class GameInfo(models.Model):
     def __str__(self):
         return self.gameName + "(" + self.gameCode + ")"
 
-
     class Meta:
         verbose_name = "游戏信息管理"
+
+
+class GameInfoForm(ModelForm):
+    class Meta:
+        model = GameInfo
+        fields = "__all__"
 
 
 class AccountInfo(models.Model):
@@ -93,10 +98,3 @@ class AccountInfo(models.Model):
 
     class Meta:
         verbose_name = "开发者账号管理"
-
-
-class GameInfoForm(ModelForm):
-    class Meta:
-        model = GameInfo
-        fields = "__all__"
-
