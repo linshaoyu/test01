@@ -20,8 +20,10 @@ from AppTest import views
 urlpatterns = [
    # url(r"^$", views.index),
     url(r"^index$", views.ResultsView.as_view()),
-    url(r"^detail/(?P<pk>[a-zA-Z]+)/$", views.DetailView.as_view(), name="detail"),
-    # url(r"^detail/([a-zA-Z]+)/$", views.detail, name="detail"),
+    # url(r"^detail/(?P<pk>[a-zA-Z]+)/$", views.DetailView.as_view(), name="detail"),
+    url(r"^detail/(?P<pk>[a-zA-Z]+)/$", views.detail, name="detail"),
+    url(r"^create/(?P<pk>[a-zA-Z]?)$", views.detail, name="create"),
+    url(r"^save/$", views.save, name="save"),
     url(r"^hello$", views.view),
    # url(r"^detail$", views.DetailView.as_view),
     url(r'^admin/', admin.site.urls),

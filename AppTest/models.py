@@ -76,12 +76,6 @@ class GameInfo(models.Model):
         verbose_name = "游戏信息管理"
 
 
-class GameInfoForm(ModelForm):
-    class Meta:
-        model = GameInfo
-        fields = "__all__"
-
-
 class AccountInfo(models.Model):
     gameName = models.CharField(max_length=100, verbose_name="游戏名称")
     gameCode = models.ForeignKey(GameInfo, verbose_name="游戏编码")

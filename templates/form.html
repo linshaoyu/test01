@@ -5,19 +5,24 @@
     <h1>{{ form.gameName }} || {{ gameinfo.gameName }}</h1>
     {#    {% url "info" gameinfo.gameCode %}#}
     <br>
-    <form action="" method="post">
+    <form action="/save/" method="POST">
         {% csrf_token %}
 
         {{ gameinfo }}
 
         <h4>=========================================</h4>
+        <table class="table table-hover">
+            {{ form }}
+        </table>
 
-        {% for field in form %}
-            <div class="fieldWrapper">
-                {{ field.label_tag }}{{ field }}
-                {{ field.errors }}
-            </div>
-        {% endfor %}
+        <h4>=========================================</h4>
+
+{#        {% for field in form %}#}
+{#            <div class="fieldWrapper">#}
+{#                {{ field.label_tag }}{{ field }}#}
+{#                {{ field.errors }}#}
+{#            </div>#}
+{#        {% endfor %}#}
         <input type="submit" value="Vote"/>
     </form>
 

@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
 
-from .forms import AddForm
+from .forms import *
 from .models import *
 
 logging.basicConfig(level=logging.INFO)
@@ -24,27 +24,39 @@ class ResultsView(generic.ListView):
 class DetailView(generic.DetailView):
     logging.info("===DetailView====")
     model = GameInfo
-    model = GameInfoForm(model)
     template_name = "form.html"
 
+    # def get_object(self, queryset=None):
+    #     pk = self.kwargs.get(self.pk_url_kwarg)
+    #     gameInfo = GameInfo.objects.get(pk=pk)
+    #     print(gameInfo)
+    #     form = GameInfoForm(instance=gameInfo)
+    #     return form
 
-"""
-    def get_context_data(self, **kwargs):
-        context = super(DetailView, self).get_context_data(**kwargs)
-        return context
-"""
 
-
-def detail(request, gameCode):
+def detail(request, pk):
     logging.info("detail")
-    if (request.method == "POST"):
+    if request.method == "POST":
         logging.info("post")
     else:
-        logging.info("get")
-        gameInfo = GameInfo.objects.get(pk=gameCode)
-        form = GameInfoForm(instance=gameInfo)
+        logging.info("get:" + pk)
+        if not pk.strip():
+            form = GameInfoForm
+        else:
+            gameinfo = GameInfo.objects.get(pk=pk)
+            form = GameInfoForm(instance=gameinfo)
     return render(request, "form.html", {"form": form})
 
+
+def save(request):
+    if request.method == "POST":
+        form = GameInfoForm(request.POST)
+        if form.is_valid():
+            new_gameinfo = form.save()
+            print(new_gameinfo)
+    else:
+        form = GameInfoForm
+    return render(request, "form.html", {"form": form})
 
 def view(request):
     logging.info("views.view")
